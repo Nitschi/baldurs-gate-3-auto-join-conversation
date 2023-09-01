@@ -23,19 +23,8 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Install PyInstaller
-      run: pip install pyinstaller
-
-    - name: Extract Version and Update Version Info
-      run: |
-        MAJOR=$(python -c "from version import major; print(major)")
-        MINOR=$(python -c "from version import minor; print(minor)")
-        FIX=$(python -c "from version import fix; print(fix)")
-        VERSION="$MAJOR.$MINOR.$FIX"
-        sed -i "s/PLACEHOLDER_VERSION/$VERSION/g" version_info.txt
-        sed -i "s/PLACEHOLDER_FILEVERS/$MAJOR, $MINOR, $FIX, 0/g" version_info.txt
-        sed -i "s/PLACEHOLDER_PRODVERS/$MAJOR, $MINOR, $FIX, 0/g" version_info.txt
-      shell: bash
+    - name: Generate build.spec and version_info.txt
+      run: python build.py
 
     - name: Create Executable
       run: pyinstaller build.spec
