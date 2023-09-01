@@ -24,7 +24,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Generate build.spec and version_info.txt
-      run: python build.py
+      run: python generate_build_version_files.py
 
     - name: Create Executable
       run: pyinstaller build.spec
