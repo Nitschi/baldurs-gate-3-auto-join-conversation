@@ -3,7 +3,7 @@ name: Build EXE and Package
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - feature/add-github-actions  # Trigger the workflow on push to the main branch
     paths:
       - 'version.py'  # Only run if version.py changes
 
