@@ -10,10 +10,7 @@ block_cipher = None
 a = Analysis(['main.py'],
              pathex=['.'],
              binaries=[],
-             datas=[('listen-in-*.png', '.'), ('settings.json', '.'), ('requirements.txt', '.')],
-             upx=True,
-             upx_exclude=[],
-             name='baldurs-gate-3-auto-join-conversation')
+             datas=[('listen-in-*.png', '.'), ('settings.json', '.'), ('requirements.txt', '.')])
 
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
