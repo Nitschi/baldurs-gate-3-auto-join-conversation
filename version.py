@@ -1,4 +1,4 @@
 major = 1
 minor = 2
-fix = 0
+fix = 2
 version = f"{major}.{minor}.{fix}"
