@@ -35,6 +35,7 @@ jobs:
         sed -i "s/PLACEHOLDER_VERSION/$VERSION/g" version_info.txt
         sed -i "s/PLACEHOLDER_FILEVERS/$MAJOR, $MINOR, $FIX, 0/g" version_info.txt
         sed -i "s/PLACEHOLDER_PRODVERS/$MAJOR, $MINOR, $FIX, 0/g" version_info.txt
+      shell: bash
 
     - name: Create Executable
       run: pyinstaller build.spec
