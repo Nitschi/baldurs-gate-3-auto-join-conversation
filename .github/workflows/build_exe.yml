@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - feature/add-github-actions  # Trigger the workflow on push to the main branch
-    paths:
-      - 'version.py'  # Only run if version.py changes
+    # paths:
+    #   - 'version.py'  # Only run if version.py changes
 
 jobs:
   build:
@@ -23,17 +23,21 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Install PyInstaller and pyrcc
-      run: pip install pyinstaller pyrcc
+    - name: Install PyInstaller
+      run: pip install pyinstaller
 
-    - name: Generate Version Info
-      run: python generate_version_info.py
-
-    - name: Convert to .version file
-      run: pyrcc version_info.txt version_info.version
+    - name: Extract Version and Update Version Info
+      run: |
+        MAJOR=$(python -c "from version import major; print(major)")
+        MINOR=$(python -c "from version import minor; print(minor)")
+        FIX=$(python -c "from version import fix; print(fix)")
+        VERSION="$MAJOR.$MINOR.$FIX"
+        sed -i "s/PLACEHOLDER_VERSION/$VERSION/g" version_info.txt
+        sed -i "s/PLACEHOLDER_FILEVERS/$MAJOR, $MINOR, $FIX, 0/g" version_info.txt
+        sed -i "s/PLACEHOLDER_PRODVERS/$MAJOR, $MINOR, $FIX, 0/g" version_info.txt
 
     - name: Create Executable
-      run: pyinstaller --onefile --name baldurs-gate-3-auto-join-conversation --version-file version_info.version main.py
+      run: pyinstaller build.spec
 
     - name: Package Files
       run: |
