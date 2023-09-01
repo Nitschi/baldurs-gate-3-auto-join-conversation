@@ -46,7 +46,7 @@ jobs:
       with:
         tag_name: ${{ env.VERSION }}
         release_name: Release ${{ env.VERSION }}
-        draft: true
+        draft: false
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.BG3_JOIN_CONVERSATION_DEPLOY_TOKEN }}
