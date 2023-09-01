@@ -3,9 +3,9 @@ name: Build EXE and Create Release
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
-    paths:
-      - 'version.py'  # Only run if version.py changes
+      - develop  # Trigger the workflow on push to the main branch
+    # paths:
+    #   - 'version.py'  # Only run if version.py changes
   workflow_dispatch:  # Enable manual triggering
 
 jobs:
@@ -50,4 +50,4 @@ jobs:
         name: Release ${{ env.VERSION }}
         artifacts: baldurs-gate-3-auto-join-conversation.zip
         artifactContentType: application/zip
-        # token: ${{ secrets.YOUR_ACCESS_TOKEN }} # Only needed in forks
+        token: ${{ secrets.BG3_JOIN_CONVERSATION_DEPLOY_TOKEN }} # Only needed in forks
