@@ -34,8 +34,7 @@ exe = EXE(pyz,
 
 # Generate version_info.txt
 with open("version_info.txt", "w") as f:
-    f.write(f"""
-VSVersionInfo(
+    f.write(f"""VSVersionInfo(
   ffi=FixedFileInfo(
     filevers=({major}, {minor}, {fix}, 0),
     prodvers=({major}, {minor}, {fix}, 0),
@@ -55,7 +54,7 @@ VSVersionInfo(
         StringStruct(u'FileDescription', u'Baldurs Gate 3 Auto Join Conversations Executable'),
         StringStruct(u'FileVersion', u'{version}'),
         StringStruct(u'InternalName', u'cmd'),
-        StringStruct(u'LegalCopyright', u'Seyahdoo Studios \\xa9'),
+        StringStruct(u'LegalCopyright', u'Seyahdoo Studios \\\\xa9'),
         StringStruct(u'OriginalFilename', u'baldurs-gate-3-auto-join-conversation.exe'),
         StringStruct(u'ProductName', u'Baldurs Gate 3 Auto Join Conversations'),
         StringStruct(u'ProductVersion', u'{version}')])
@@ -63,7 +62,6 @@ VSVersionInfo(
     ), 
     VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
   ]
-)
-    """)
+)""")
 
 print("Generated build.spec and version_info.txt")
